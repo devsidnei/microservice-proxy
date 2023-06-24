@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  reverse-proxy:
+    container_name: reverse-proxy
+    build: ./
+    image: reverse-proxy-production
+    restart: unless-stopped
+    networks:
+      - erp-services
+      - erp-client
+      - laravel-queue
+    ports:
+      - 80:80
+
+networks:
+  erp-services:
+    external: true
+  erp-client:
+    external: true
+  laravel-queue:
+    external: true

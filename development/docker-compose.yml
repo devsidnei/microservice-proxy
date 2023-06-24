@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  reverse-proxy:
+    container_name: microservice-proxy
+    build: ./
+    image: reverse-proxy
+    restart: unless-stopped
+    networks:
+      - microservice-01
+      - microservice-02
+    ports:
+      - 80:80
+
+networks:
+  microservice-01:
+    external: true
+  microservice-02:
+    external: true
